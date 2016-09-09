@@ -1,3 +1,8 @@
+# CodeBlocks files
+*.layout
+*.depend
+*.cbp
+
 # Compiled Object files
 *.slo
 *.lo
