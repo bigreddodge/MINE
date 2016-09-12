@@ -5,6 +5,7 @@
 void writeTest();
 using namespace std;
 
+///hello my darlings
 int main(int argc, char *argv[]) {
     if (argc == 2) {
         cout << "opening " << argv[1] << "...\n";
