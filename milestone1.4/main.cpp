@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "..\include\bmp_file.h"
+#include "include\bmp_file.h"
+
 void writeTest();
 using namespace std;
 
