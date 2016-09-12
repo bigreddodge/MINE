@@ -20,6 +20,7 @@ class bmp_file
         unsigned long getStartOfBitmap();
         unsigned long getWidth();
         unsigned long getHeight();
+        unsigned long getNumberOfColorsInPalette();
         void printData();
 
     protected:
@@ -55,7 +56,6 @@ class bmp_file
 //        unsigned long getVerticalResolution();
 //        void setVerticalResolution(unsigned long verticalResolution);
 //
-//        unsigned long getNumberOfColorsInPalette();
 //        void setNumberOfColorsInPalette(unsigned long numberOfColorsInPalette);
 //
 //        unsigned long getImportantColors();

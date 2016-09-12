@@ -74,6 +74,9 @@ unsigned long bmp_file::get32(int LSBindex)
     return (unsigned long) (((unsigned long)fileData[LSBindex + 3]) << 24) | (((unsigned long)fileData[LSBindex + 2]) << 16) | (((unsigned long)fileData[LSBindex + 1]) << 8) | ((unsigned long)fileData[LSBindex]);
 }
 
+unsigned long bmp_file::getNumberOfColorsInPalette(){return get32(50);}
+
+
 //unsigned long bmp_file::getHeaderSize(){}
 //
 //unsigned short bmp_file::getPlanes(){}
@@ -91,7 +94,6 @@ unsigned long bmp_file::get32(int LSBindex)
 //unsigned long bmp_file::getVerticalResolution(){}
 //void bmp_file::setVerticalResolution(unsigned long verticalResolution){}
 //
-//unsigned long bmp_file::getNumberOfColorsInPalette(){}
 //void bmp_file::setNumberOfColorsInPalette(unsigned long numberOfColorsInPalette){}
 //
 //unsigned long bmp_file::getImportantColors(){}
