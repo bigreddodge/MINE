@@ -7,7 +7,6 @@
 #include <stdint.h>
 #include <vector>
 
-
 class bmp_file
 {
     public:
@@ -28,6 +27,7 @@ class bmp_file
     private:
         unsigned long get32(int LSBindex);
         std::vector<unsigned char> fileData;
+
 };
 
 #endif // BMP_FILE_H

@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+
+
 /** BMP Header Information
  * Note: All element indices are 0-based
  * File Header:
@@ -30,8 +32,9 @@ bmp_file::bmp_file(std::string filepath)
         infile.read(buffer, 1);
         fileData.push_back(*buffer);
         counter++;
-        std::cout << buffer;
+        //std::cout << buffer;
     }
+    fileData.pop_back();
     std::cout << "\n\nLoop counter: " << counter << std::endl;
 }
 
@@ -55,13 +58,21 @@ void bmp_file::writeToNewFile(std::string filepath)
 
 void bmp_file::printData()
 {
+
     std::cout << "\nFilesize: " << getFileSize();
     std::cout << "\nOffset: " << getStartOfBitmap();
     std::cout << "\nWidth: " << getWidth();
     std::cout << "\nHeight: " << getHeight();
     std::cout << "\nVector Size: " << fileData.size();
-
-
+    ///Pixel test:
+    int px = getStartOfBitmap();
+    std::cout << "\n\n";
+    for (int c = 0; c < 3; ++c){
+        for (int i = 0; i < 8; ++i){
+            std::cout << ((fileData[px+c] >> i) & 0x01);
+        }
+        std::cout << "\n";
+    }
 }
 
 unsigned long bmp_file::getFileSize(){return get32(2);}
