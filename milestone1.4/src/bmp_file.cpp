@@ -28,7 +28,6 @@ bmp_file::bmp_file(std::string filepath)
     while (!infile.eof())
     {
         infile.read(buffer, 1);
-        //infile >> buffer;
         fileData.push_back(*buffer);
         counter++;
         std::cout << buffer;
