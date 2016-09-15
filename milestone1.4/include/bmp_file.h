@@ -18,7 +18,7 @@ class bmp_file
 
         bmp_file(std::string filepath);
         void writeToNewFile(std::string filepath);
-        void histogram_equalization();
+        void histogram_equalization(std::string filepath);
         unsigned long getFileSize();
         unsigned long getStartOfBitmap();
         unsigned long getWidth();
@@ -41,10 +41,13 @@ struct accumulator
         accumulator(uint8_t _color)
         {
             color = _color;
-            counter = 1;            ///first occurrence of that color so set to 1
+            counter = 0;            ///first occurrence of that color so set to 1
         }
         int counter;
+        int cCounter;   ///cumulative count
         uint8_t color;
+        uint8_t newColor;
+        double cPercent;       /// cumulative percent
 
     private:
 

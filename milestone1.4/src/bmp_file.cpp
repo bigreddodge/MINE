@@ -81,77 +81,90 @@ unsigned long bmp_file::get32(int LSBindex)
 }
 
 
-void bmp_file::histogram_equalization()
+void bmp_file::histogram_equalization(std::string filepath)
 {
     ///Creating original histogram
 
-    /*
-    std::ofstream outfile;
-    outfile.open("testdata1.txt");
-    std::ofstream fout;
-    outfile.open("testdata2.txt");
-    std::ofstream out;
-    out.open("testdata3.txt");
-    */
+
+    std::ofstream beforeFile;
+    beforeFile.open("before.csv");
+    std::ofstream afterFile;
+    afterFile.open("after.csv");
+
     std::vector <accumulator> histogram;
+
+    ///populate histogram with colors
+    for (int i = 0; i < 256; i ++)
+    {
+        accumulator *temp = new accumulator(i);
+            histogram.push_back(*temp);
+    }
 
     for( unsigned int i = getStartOfBitmap(); i < fileData.size(); i++)
     {
-        bool found = false;
         for (unsigned int j = 0; j < histogram.size(); j++)                 /// loop through file
         {
             if ( (unsigned int)histogram[j].color == (unsigned int)fileData[i] )                        /// if we have this color increment the count
             {
-                found = true;
                 histogram[j].counter++;
                 break;
             }
         }
-        if (!found)                                                         /// if we dont have it make it and add it to the histogram
-        {
-            accumulator *temp = new accumulator(fileData[i]);
-            histogram.push_back(*temp);
-        }           ///need to print in a file to plot
     }
 
-    std::cout << "\nInitial\n";
-    for(unsigned int p = 0; p < histogram.size(); p++)
+    /*for(unsigned int i = 0; i < histogram.size(); i++)
     {
-        std::cout << p << "\t" << (unsigned int)histogram[p].color << "\tcounter\t" << histogram[p].counter << std::endl;
-    }
+        outfile << i << "," << (unsigned int)histogram[i].color << "," << histogram[i].counter << std::endl;
+    }*/
 
     /// Creating a cumulative histogram
 
     std::sort(histogram.begin(), histogram.end(), ColorCompare);
 
-    for(unsigned int n = 1; n< histogram.size(); n++)
+    /// i = 0 condition
+    histogram[0].cCounter = histogram[0].counter;
+    for(unsigned int i = 1; i < histogram.size(); i++)
     {
-        histogram[n].counter = histogram[n].counter + histogram[n-1].counter;
+        histogram[i].cCounter = histogram[i].counter + histogram[i-1].cCounter;
     }               ///need to print in a file to plot
 
-    std::cout << "\nSorted Cumulative\n";
-    for(unsigned int p = 0; p< histogram.size(); p++)
+    for(unsigned int i = 0; i < histogram.size(); i++)
     {
-        std::cout << p << "\t" << (unsigned int)histogram[p].color << "\tcounter\t" << histogram[p].counter << std::endl;
+        /// calculate cumulative percent
+        histogram[i].cPercent = (double)histogram[i].cCounter / (double)histogram[histogram.size()-1].cCounter;
     }
 
     /// Histogram equalization
 
-    for( unsigned int g = 0; g<histogram.size(); g++)
+    for( unsigned int i = 0; i<histogram.size(); i++)
     {
-        histogram[g].color = round((((histogram[g].counter-1)/63))*255);
+        /// Calculate new color
+        histogram[i].newColor = (uint8_t)floor(histogram[i].cPercent * 255); ///new color = percentile of cumulative * number of colors
     }
 
-    std::cout << "\nHistogram Equalized\n";
-    for(unsigned int p = 0; p< histogram.size(); p++)
+    for(unsigned int i = 0; i< histogram.size(); i++)
     {
-        std::cout << p << "\t" << (unsigned int)histogram[p].color << "\tcounter\t" << histogram[p].counter << std::endl;
+        beforeFile << (unsigned int)histogram[i].color << ","
+                << histogram[i].counter << std::endl;
+        afterFile << (unsigned int)histogram[i].newColor << ","
+                << histogram[i].counter << std::endl;
     }
 
-    /*
-    outfile.close();
-    fout.close();
-    out.close();*/
+    beforeFile.close();
+    afterFile.close();
+
+    ///write the Histogram Equalized data to this BMP_files data.
+    for(unsigned int i = getStartOfBitmap(); i < fileData.size(); i++)
+    {
+        for (unsigned int j = 0; j < histogram.size(); j++)
+        {
+            if ((uint8_t)fileData[i] == histogram[j].color)
+            {
+                fileData[i] = (unsigned char)histogram[j].newColor;
+            }
+        }
+    }
+    writeToNewFile(filepath);
 }
 
 
