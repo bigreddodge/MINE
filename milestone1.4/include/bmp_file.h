@@ -38,7 +38,7 @@ class bmp_file
 struct accumulator
 {
     public:
-        accumulator(unsigned char _color)
+        accumulator(uint8_t _color)
         {
             color = _color;
             counter = 1;            ///first occurrence of that color so set to 1

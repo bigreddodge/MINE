@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
     if (argc == 2) {
         cout << "opening " << argv[1] << "...\n";
         bmp_file myFile(argv[1]);
-        myFile.printData();
+        //myFile.printData();
         myFile.histogram_equalization();
     }
     else if (argc == 3){    /// Primary function
