@@ -85,12 +85,19 @@ void bmp_file::histogram_equalization()
 {
     ///Creating original histogram
 
+    std::ofstream outfile;
+    outfile.open("testdata1.txt");
+    std::ofstream fout;
+    outfile.open("testdata2.txt");
+    std::ofstream out;
+    out.open("testdata3.txt");
+
     std::vector <accumulator> histogram;
 
     for( unsigned int i = getStartOfBitmap(); i < fileData.size(); i++)
     {
         bool found = false;
-        for (unsigned int j = 0; j < histogram.size(); j++)                 /// loop throuhg file
+        for (unsigned int j = 0; j < histogram.size(); j++)                 /// loop through file
         {
             if ( histogram[j].color == fileData[i] )                        /// if we have this color increment the count
             {
@@ -106,6 +113,11 @@ void bmp_file::histogram_equalization()
         }           ///need to print in a file to plot
     }
 
+    for(unsigned int p = 0; p< histogram.size(); p++)
+    {
+        outfile << p << " " << histogram[p].color << " counter " << histogram[p].counter << std::endl;
+    }
+
     /// Creating a cumulative histogram
 
     std::sort(histogram.begin(), histogram.end(), ColorCompare);
@@ -115,6 +127,11 @@ void bmp_file::histogram_equalization()
         histogram[n].counter = histogram[n].counter + histogram[n-1].counter;
     }               ///need to print in a file to plot
 
+    for(unsigned int p = 0; p< histogram.size(); p++)
+    {
+        fout << p << " " << histogram[p].color << " counter " << histogram[p].counter << std::endl;
+    }
+
     /// Histogram equalization
 
     for( unsigned int g = 0; g<histogram.size(); g++)
@@ -123,6 +140,14 @@ void bmp_file::histogram_equalization()
 
     }
 
+    for(unsigned int p = 0; p< histogram.size(); p++)
+    {
+        out << p << " " << histogram[p].color << " counter " << histogram[p].counter << std::endl;
+    }
+
+    outfile.close();
+    fout.close();
+    out.close();
 
 }
 

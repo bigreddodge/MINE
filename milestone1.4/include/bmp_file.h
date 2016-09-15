@@ -41,7 +41,7 @@ struct accumulator
         accumulator(unsigned char _color)
         {
             color = _color;
-            counter = 0;
+            counter = 1;            ///first occurrence of that color so set to 1
         }
         int counter;
         uint8_t color;

@@ -5,13 +5,12 @@
 void writeTest();
 using namespace std;
 
-///hello my darlings
 int main(int argc, char *argv[]) {
     if (argc == 2) {
         cout << "opening " << argv[1] << "...\n";
         bmp_file myFile(argv[1]);
         myFile.printData();
-        myFile.writeToNewFile("output.bmp");
+        myFile.histogram_equalization();
     }
     else if (argc == 3){    /// Primary function
         cout << "processing " << argv[1] << "...\n";
