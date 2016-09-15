@@ -77,6 +77,47 @@ unsigned long bmp_file::get32(int LSBindex)
     return (unsigned long) (((unsigned long)fileData[LSBindex + 3]) << 24) | (((unsigned long)fileData[LSBindex + 2]) << 16) | (((unsigned long)fileData[LSBindex + 1]) << 8) | ((unsigned long)fileData[LSBindex]);
 }
 
+
+void bmp_file::histogram_equalization()
+{
+    ///Creating original histogram
+
+    std::vector <accumulator> histogram;
+
+    for( unsigned int i = getStartOfBitmap(); i < fileData.size(); i++)
+    {
+        bool found = false;
+        for (unsigned int j = 0; j < histogram.size(); j++)                 /// loop throuhg file
+        {
+            if ( histogram[j].color == fileData[i] )                        /// if we have this color increment the count
+            {
+                found = true;
+                histogram[j].counter++;
+                break;
+            }
+        }
+        if (!found)                                                         /// if we dont have it make it and add it to the histogram
+        {
+            accumulator *temp = new accumulator(fileData[i]);
+            histogram.push_back(*temp);
+        }
+    }
+
+    /// Creating a cumulative histogram
+
+    std::sort(histogram.begin(), histogram.end(), ColorCompare());
+
+    for(int n = 1; n< histogram.size(); n++)
+    {
+        histogram[n].counter = histogram[n].counter + histogram[n-1].counter;
+    }
+
+    /// Histogram equalization
+
+
+}
+
+
 //unsigned long bmp_file::getHeaderSize(){}
 //
 //unsigned short bmp_file::getPlanes(){}

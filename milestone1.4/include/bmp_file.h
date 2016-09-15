@@ -16,6 +16,7 @@ class bmp_file
 
         bmp_file(std::string filepath);
         void writeToNewFile(std::string filepath);
+        void histogram_equalization();
         unsigned long getFileSize();
         unsigned long getStartOfBitmap();
         unsigned long getWidth();
@@ -27,6 +28,26 @@ class bmp_file
     private:
         unsigned long get32(int LSBindex);
         std::vector<unsigned char> fileData;
+};
+
+bool ColorCompare(accumulator a, accumulator b)
+{
+    return (a.color > b.color);
+}
+
+struct accumulator
+{
+    public:
+        accumulator(unsigned char _color)
+        {
+            color = _color;
+            counter = 0;
+        }
+        int counter;
+        uint8_t color;
+
+    private:
+
 };
 
 #endif // BMP_FILE_H
