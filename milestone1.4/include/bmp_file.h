@@ -6,6 +6,8 @@
 #include <fstream>
 #include <stdint.h>
 #include <vector>
+#include <algorithm>
+#include <math.h>
 
 
 class bmp_file
@@ -30,10 +32,8 @@ class bmp_file
         std::vector<unsigned char> fileData;
 };
 
-bool ColorCompare(accumulator a, accumulator b)
-{
-    return (a.color > b.color);
-}
+
+
 
 struct accumulator
 {
@@ -49,6 +49,11 @@ struct accumulator
     private:
 
 };
+
+/*bool ColorCompare(accumulator a, accumulator b)
+{
+    return (a.color > b.color);
+};*/
 
 #endif // BMP_FILE_H
 

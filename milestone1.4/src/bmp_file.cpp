@@ -12,7 +12,10 @@
  *   Height: bytes 22-25
  */
 
- /// Hello again.
+bool ColorCompare(accumulator a, accumulator b)
+{
+    return (a.color > b.color);
+};
 
 bmp_file::bmp_file()
 {
@@ -100,19 +103,25 @@ void bmp_file::histogram_equalization()
         {
             accumulator *temp = new accumulator(fileData[i]);
             histogram.push_back(*temp);
-        }
+        }           ///need to print in a file to plot
     }
 
     /// Creating a cumulative histogram
 
-    std::sort(histogram.begin(), histogram.end(), ColorCompare());
+    std::sort(histogram.begin(), histogram.end(), ColorCompare);
 
-    for(int n = 1; n< histogram.size(); n++)
+    for(unsigned int n = 1; n< histogram.size(); n++)
     {
         histogram[n].counter = histogram[n].counter + histogram[n-1].counter;
-    }
+    }               ///need to print in a file to plot
 
     /// Histogram equalization
+
+    for( unsigned int g = 0; g<histogram.size(); g++)
+    {
+        histogram[g].color = round((((histogram[g].counter-1)/63))*255);
+
+    }
 
 
 }
