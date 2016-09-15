@@ -12,6 +12,8 @@
  *   Height: bytes 22-25
  */
 
+ /// Hello again.
+
 bmp_file::bmp_file()
 {
     //ctor
