@@ -1,3 +1,9 @@
+# Bitmaps
+*.bmp
+
+# Graphing output files
+*.csv
+
 # CodeBlocks files
 *.layout
 *.depend

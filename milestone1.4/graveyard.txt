@@ -1,0 +1,78 @@
+
+//        unsigned long getHeaderSize();
+//        void setFileSize(unsigned long fileSize);
+//        void setStartOfBitmap(unsigned long startOfBitmap);
+//        void setHeaderSize( unsigned long headerSize);
+//        void setWidth(unsigned long width);
+//        void setHeight(unsigned long height);
+//        unsigned short getBM();
+//        unsigned short getPlanes();
+//        void setPlanes(unsigned short planes);
+//        unsigned long getCompression();
+//        void setCompression(unsigned long compression);
+//        unsigned long getCompressionSize();
+//        void setCompressionSize(unsigned long compressionSize);
+//        unsigned long getHorizontalResolution();
+//        void setHorizontalResolution(unsigned long horizontalResolution);
+//        unsigned long getVerticalResolution();
+//        void setVerticalResolution(unsigned long verticalResolution);
+//        void setNumberOfColorsInPalette(unsigned long numberOfColorsInPalette);
+//        unsigned long getImportantColors();
+//        void setImportantColors(unsigned long importantColors);
+
+//    ///Pixel test:
+//    int px = getStartOfBitmap();
+//    std::cout << "\n\n";
+//    for (int c = 0; c < 3; ++c){
+//        for (int i = 0; i < 8; ++i){
+//            std::cout << ((fileData[px+c] >> i) & 0x01);
+//        }
+//        std::cout << "\n";
+//    }
+
+
+//Removed this function because it's long and confusing (and probably takes more clock cycles) Replaced it with a loop. Verified identical function with IDEOne.
+//unsigned long bmp_file::get32(int LSBindex){
+//    return (unsigned long) (((unsigned long)fileData[LSBindex + 3]) << 24) | (((unsigned long)fileData[LSBindex + 2]) << 16) | (((unsigned long)fileData[LSBindex + 1]) << 8) | ((unsigned long)fileData[LSBindex]);
+//}
+
+//unsigned long bmp_file::getHeaderSize(){}
+//
+//unsigned short bmp_file::getPlanes(){}
+//void bmp_file::setPlanes(unsigned short planes){}
+//
+//unsigned long bmp_file::getCompression(){}
+//void bmp_file::setCompression(unsigned long compression){}
+//
+//unsigned long bmp_file::getCompressionSize(){}
+//void bmp_file::setCompressionSize(unsigned long compressionSize){}
+//
+//unsigned long bmp_file::getHorizontalResolution(){}
+//void bmp_file::setHorizontalResolution(unsigned long horizontalResolution){}
+//
+//unsigned long bmp_file::getVerticalResolution(){}
+//void bmp_file::setVerticalResolution(unsigned long verticalResolution){}
+//
+//void bmp_file::setNumberOfColorsInPalette(unsigned long numberOfColorsInPalette){}
+//
+//unsigned long bmp_file::getImportantColors(){}
+//void bmp_file::setImportantColors(unsigned long importantColors){}
+
+
+//std::cout << "\n  " << argv[0] << "inputfile.bmp outputfile.bmp";
+//std::cout << "\n    Displays information about inputfile.bmp and rewrites it to outputfile.bmp.";
+//    else if (argc == 4) {                               /**< Histogram syntax: milestone1 input.bmp output.bmp -h */
+////        if (argv[3] == "-h\0") {
+//            histogramEqualization(argv[1], argv[2]); }
+////        else {
+////            showSyntaxMessage(argv[0]); }
+//}
+//    else if (argc == 5) {                               /**< Overlay syntax: milestone1 input.bmp output.bmp -o overlay.bmp */
+////        if (argv[3] == "-o") {
+//            imageOverlay(argv[1], argv[2], argv[4]);}
+////        else {
+////            showSyntaxMessage(argv[0]); }
+//}
+//    else {                                              /**< Default */
+//        showSyntaxMessage(argv[0]); }
+//        std::cout << "\nOperation complete.";

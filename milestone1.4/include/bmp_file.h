@@ -1,7 +1,6 @@
 #ifndef BMP_FILE_H
 #define BMP_FILE_H
 
-#include <string>
 #include <iostream>
 #include <fstream>
 #include <stdint.h>
@@ -9,33 +8,30 @@
 #include <algorithm>
 #include <math.h>
 
-
-class bmp_file
-{
+class bmp_file {
     public:
-        bmp_file();
-        virtual ~bmp_file();
+        bmp_file();                                     /**< Default constructor */
+        virtual ~bmp_file();                            /**< Default destructor */
+        bmp_file(char* filepath);                      /**< Creates an instance of bmp_file containing the specified file */
 
-        bmp_file(std::string filepath);
-        void writeToNewFile(std::string filepath);
-        void histogram_equalization(std::string filepath);
-        unsigned long getFileSize();
-        unsigned long getStartOfBitmap();
-        unsigned long getWidth();
-        unsigned long getHeight();
-        void printData();
-        void printColorPalette();
+        void writeToNewFile(char* filepath);           /**< Writes the data in the bmp_file instance to the specified file */
+        void histogram_equalization(std::string filepath);  /**< Histogram equalizes the image and writes it to the file specified in filepath */
+        unsigned long getFileSize();                    /**< Extracts the file size from the bitmap header */
+        unsigned long getStartOfBitmap();               /**< Extracts the image offset from the bitmap header */
+        unsigned long getWidth();                       /**< Extracts the image width from the bitmap header */
+        unsigned long getHeight();                      /**< Extracts the image height from the bitmap header */
+        unsigned long getNumberOfColorsInPalette();     /**< Extracts the bits/px value from the bitmap header */
+        void printData();                               /**< Outputs header data to the console using the std::cout stream */
 
-    protected:
+        unsigned char getPixel(int index);              /**< Returns the pixel data located in the specified file byte */
+        void setPixel(int index, unsigned char byte);   /**< Writes a byte to the specified pixel */
 
     private:
-        unsigned long get32(int LSBindex);
-        std::vector<unsigned char> fileData;
+        unsigned long get32(int LSBindex);              /**< Extracts a 32-bit unsigned long value from fileData beginning with element LSBindex */
+        std::vector<unsigned char> fileData;            /**< Contains the bitmap data */
 };
 
-
-
-
+/// used to count the occurences of colors and then calculate the new color in Histogram Equalization
 struct accumulator
 {
     public:
@@ -54,39 +50,4 @@ struct accumulator
 
 };
 
-/*bool ColorCompare(accumulator a, accumulator b)
-{
-    return (a.color > b.color);
-};*/
-
 #endif // BMP_FILE_H
-
-//        unsigned long getHeaderSize();
-//        void setFileSize(unsigned long fileSize);
-//        void setStartOfBitmap(unsigned long startOfBitmap);
-//        void setHeaderSize( unsigned long headerSize);
-//        void setWidth(unsigned long width);
-//        void setHeight(unsigned long height);
-//
-//        unsigned short getBM();
-//
-//        unsigned short getPlanes();
-//        void setPlanes(unsigned short planes);
-//
-//        unsigned long getCompression();
-//        void setCompression(unsigned long compression);
-//
-//        unsigned long getCompressionSize();
-//        void setCompressionSize(unsigned long compressionSize);
-//
-//        unsigned long getHorizontalResolution();
-//        void setHorizontalResolution(unsigned long horizontalResolution);
-//
-//        unsigned long getVerticalResolution();
-//        void setVerticalResolution(unsigned long verticalResolution);
-//
-//        unsigned long getNumberOfColorsInPalette();
-//        void setNumberOfColorsInPalette(unsigned long numberOfColorsInPalette);
-//
-//        unsigned long getImportantColors();
-//        void setImportantColors(unsigned long importantColors);
