@@ -24,6 +24,7 @@ class bmp_file
         unsigned long getWidth();
         unsigned long getHeight();
         void printData();
+        void printColorPalette();
 
     protected:
 

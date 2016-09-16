@@ -10,7 +10,9 @@ int main(int argc, char *argv[]) {
         cout << "opening " << argv[1] << "...\n";
         bmp_file myFile(argv[1]);
         //myFile.printData();
+        cout << "Performing Histogram Equalization...\n";
         myFile.histogram_equalization("histogram_equalized.bmp");
+        cout << "file written to histogram_equalized.bmp\n";
     }
     else if (argc == 3){    /// Primary function
         cout << "processing " << argv[1] << "...\n";

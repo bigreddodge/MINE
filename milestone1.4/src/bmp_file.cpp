@@ -38,7 +38,15 @@ bmp_file::bmp_file(std::string filepath)
         counter++;
         //std::cout << buffer;
     }
-    std::cout << "\n\nLoop counter: " << counter << std::endl << std::endl;
+}
+
+void bmp_file::printColorPalette()
+{
+    /// Prints the color palette on the first 256 pixels of the image
+    for (unsigned int i = getStartOfBitmap(); i < (getStartOfBitmap() + 256); i++)
+    {
+        fileData[i] = (unsigned char)i;
+    }
 }
 
 bmp_file::~bmp_file()
@@ -139,7 +147,7 @@ void bmp_file::histogram_equalization(std::string filepath)
     for( unsigned int i = 0; i<histogram.size(); i++)
     {
         /// Calculate new color
-        histogram[i].newColor = (uint8_t)floor(histogram[i].cPercent * 255); ///new color = percentile of cumulative * number of colors
+        histogram[i].newColor = (uint8_t)floor(histogram[i].cPercent * 253) + 1 ; ///new color = percentile of cumulative * number of colors
     }
 
     for(unsigned int i = 0; i< histogram.size(); i++)
