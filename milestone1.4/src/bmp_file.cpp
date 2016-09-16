@@ -168,7 +168,7 @@ void bmp_file::histogram_equalization(std::string filepath)
     {
         for (unsigned int j = 0; j < histogram.size(); j++)
         {
-            if (fileData[i] == histogram[j].color)
+            if ((uint8_t)fileData[i] == histogram[j].color)
             {
                 fileData[i] = histogram[j].newColor;
                 /*std::cout << "pixel: " << i << "\t"
