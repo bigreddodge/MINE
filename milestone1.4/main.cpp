@@ -41,8 +41,8 @@ void showHeaderData(char* infile) {
 /**< Subroutine for performing a histogram-equalization on the input file and writing the output */
 void histogramEqualization(char* infile) {
     std::cout << "\nHistogram EQ\n";
-    string ResultingFileName = "histogram_equalized.bmp"
-    cout << "opening " << argv[1] << "...\n";
+    char* ResultingFileName = "histogram_equalized.bmp";
+    cout << "opening " << infile << "...\n";
     bmp_file myFile(infile);
     cout << "Performing Histogram Equalization...\n";
     myFile.histogram_equalization(ResultingFileName);
