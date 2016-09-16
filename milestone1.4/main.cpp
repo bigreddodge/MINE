@@ -40,12 +40,13 @@ void showHeaderData(char* infile) {
 
 /**< Subroutine for performing a histogram-equalization on the input file and writing the output */
 void histogramEqualization(char* infile) {
-    std::cout << "\nHistogram EQ";
-
-    ///Histogram procedure goes here
-    //bmp_file myFile(infile);
-    //myFile.writeToNewFile(outfile);
-    //myFile.writeToNewFile("output.bmp");
+    std::cout << "\nHistogram EQ\n";
+    string ResultingFileName = "histogram_equalized.bmp"
+    cout << "opening " << argv[1] << "...\n";
+    bmp_file myFile(infile);
+    cout << "Performing Histogram Equalization...\n";
+    myFile.histogram_equalization(ResultingFileName);
+    cout << "file written to " << ResultingFileName << "\n";
 }
 
 /**< Subroutine for overlaying the input file with the specified overlay and writing the output */
