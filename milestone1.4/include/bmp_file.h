@@ -30,7 +30,7 @@ class bmp_file
 
     private:
         unsigned long get32(int LSBindex);
-        std::vector<unsigned char> fileData;
+        std::vector<uint8_t> fileData;
 };
 
 
