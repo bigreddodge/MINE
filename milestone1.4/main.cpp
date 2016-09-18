@@ -41,8 +41,8 @@ void showHeaderData(char* infile) {
 /**< Subroutine for performing a histogram-equalization on the input file and writing the output */
 void histogramEqualization(char* infile) {
     std::cout << "\nHistogram EQ\n";
-    string ResultingFileName = "histogram_equalized.bmp"
-    cout << "opening " << argv[1] << "...\n";
+    char* ResultingFileName = "histogram_equalized.bmp";
+    cout << "opening " << infile << "...\n";
     bmp_file myFile(infile);
     cout << "Performing Histogram Equalization...\n";
     myFile.histogram_equalization(ResultingFileName);
@@ -67,7 +67,7 @@ void imageOverlay(char* infile, char* overlay) {
         if (ov.getPixel(ovOffset + i) == 0x00)
             in.setPixel(inOffset + i, 0xFF);
     }
-    in.writeToNewFile("output_ov.bmp");
+    in.writeToNewFile("image_overlay.bmp");
 }
 
 /**< Displays Command-Line Syntax */
@@ -77,8 +77,8 @@ void showSyntaxMessage(char* cmd) {
     std::cout << "\n\n\tExamples:\t" << cmd << " image.bmp";
     std::cout << "\n\t\t\t- Displays information about image.bmp.";
     std::cout << "\n\n\t\t\t" << cmd << " image.bmp overlay.bmp";
-    std::cout << "\n\t\t\t- Performs histogram-equalization on image.bmp and\n\t\t\t  writes the image to image_he.bmp.";
-    std::cout << "\n\t\t\t- Overlays image.bmp with overlay.bmp and writes the\n\t\t\t  output to image_io.bmp.\n\n";
+    std::cout << "\n\t\t\t- Performs histogram-equalization on image.bmp and\n\t\t\t  writes the image to histogram_equalized.bmp.";
+    std::cout << "\n\t\t\t- Overlays image.bmp with overlay.bmp and writes the\n\t\t\t  output to image_overlay.bmp.\n\n";
 }
 
 

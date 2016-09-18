@@ -93,9 +93,9 @@ unsigned long bmp_file::get32(int LSBindex){
     return temp;
 }
 
-/**< Gets count of all colors used [0 to 255] and then calculates a new color for each color, overwrites 
+/**< Gets count of all colors used [0 to 255] and then calculates a new color for each color, overwrites
      this bitmap to the new colors pixel by pixel and out puts the resulting bitmap to filepath */
-void bmp_file::histogram_equalization(std::string filepath)
+void bmp_file::histogram_equalization(char* filepath)
 {
     /// Preping files for csv output of data before and after algorithim runs
     /**
