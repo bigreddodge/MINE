@@ -43,14 +43,14 @@ void histogramEqualization(char* infile) {
     std::cout << "\nHistogram EQ";
     char* ResultingFileName = "histogram_equalized.bmp";
     bmp_file myFile(infile);
-    std::cout << "\nPerforming Histogram Equalization...\n";
+    std::cout << "\nPerforming Histogram Equalization...";
     myFile.histogram_equalization(ResultingFileName);
     std::cout << "\nCompleted.\n";
 }
 
 /**< Subroutine for overlaying the input file with the specified overlay and writing the output */
 void imageOverlay(char* infile, char* overlay) {
-    std::cout << "\n\nImage Overlay...";
+    std::cout << "\nImage Overlay...";
     bmp_file in(infile);
     bmp_file ov(overlay);
     unsigned long inOffset = in.getStartOfBitmap();
