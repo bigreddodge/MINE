@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     } else {                      /**< Default */
         showSyntaxMessage(argv[0]);
     }
-    std::cout << endl;
+    std::cout << endl << endl;
     return 0;
 }
 
@@ -35,17 +35,27 @@ void showHeaderData(char* infile) {
 /**< Subroutine: performs histogram-equalization on the input file and writes the output */
 void histogramEqualization(char* infile) {
     std::cout << "\nHistogram EQ";
+<<<<<<< HEAD
     char* ResultingFileName = "histogram_equalized.bmp";
     //cout << "opening " << infile << "...\n";
     bmp_file myFile(infile);
     std::cout << "\nPerforming Histogram Equalization...";
     myFile.histogram_equalization(ResultingFileName);
     std::cout << "\nCompleted.\n";
+=======
+    char* ResultingFileName = "output_he.bmp";
+    bmp_file myFile(infile);
+    myFile.histogram_equalization(ResultingFileName);
+>>>>>>> refs/remotes/origin/master
 }
 
 /**< Subroutine: overlays the input file with the specified overlay and writes the output */
 void imageOverlay(char* infile, char* overlay) {
+<<<<<<< HEAD
     std::cout << "\nImage Overlay";
+=======
+    std::cout << "\n\nImage Overlay...";
+>>>>>>> refs/remotes/origin/master
 
     ///Overlay procedure goes here
     bmp_file in(infile);

@@ -10,6 +10,7 @@
 
 class bmp_file {
     public:
+<<<<<<< HEAD
         bmp_file();                                  /**< Default constructor */
         virtual ~bmp_file();                         /**< Default destructor */
 
@@ -37,6 +38,23 @@ class bmp_file {
 
         /**< Writes a byte to the specified pixel */
         void setPixel(int index, unsigned char byte);
+=======
+        bmp_file();                                     /**< Default constructor */
+        virtual ~bmp_file();                            /**< Default destructor */
+        bmp_file(char* filepath);                       /**< Creates an instance of bmp_file containing the specified file */
+
+        void writeToNewFile(char* filepath);            /**< Writes the data in the bmp_file instance to the specified file */
+        void histogram_equalization(char* filepath);    /**< Histogram equalizes the image and writes it to the file specified in filepath */
+        unsigned long getFileSize();                    /**< Extracts the file size from the bitmap header */
+        unsigned long getStartOfBitmap();               /**< Extracts the image offset from the bitmap header */
+        unsigned long getWidth();                       /**< Extracts the image width from the bitmap header */
+        unsigned long getHeight();                      /**< Extracts the image height from the bitmap header */
+        unsigned long getNumberOfColorsInPalette();     /**< Extracts the bits/px value from the bitmap header */
+        void printData();                               /**< Outputs header data to the console using the std::cout stream */
+
+        unsigned char getPixel(int index);              /**< Returns the pixel data located in the specified file byte */
+        void setPixel(int index, unsigned char byte);   /**< Writes a byte to the specified pixel */
+>>>>>>> refs/remotes/origin/master
 
     private:
         /**< Extracts a 32-bit unsigned long from fileData element beginning with LSBindex */
@@ -59,4 +77,8 @@ struct accumulator {
         double cPercent;        /**< cumulative percent */
 };
 
+<<<<<<< HEAD
 #endif // BMP_FILE_H
+=======
+#endif // BMP_FILE_H
+>>>>>>> refs/remotes/origin/master
