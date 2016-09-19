@@ -93,6 +93,7 @@ unsigned long bmp_file::get32(int LSBindex) {
     return temp;
 }
 
+<<<<<<< HEAD
 /**< Gets count of all colors used [0 to 255] and then calculates a new color for each color, overwrites
      this bitmap to the new colors pixel by pixel and out puts the resulting bitmap to filePath */
 void bmp_file::histogram_equalization(char* filepath) {
@@ -103,6 +104,14 @@ void bmp_file::histogram_equalization(char* filepath) {
     std::ofstream afterFile;
     afterFile.open("after.csv");
     */
+=======
+/**< Gets count of all colors used [0 to 255] and then calculates a new color
+     for each color, overwrites this bitmap to the new colors pixel by pixel
+        and outputs the resulting bitmap to filepath.
+*/
+void bmp_file::histogram_equalization(char* filepath)
+{
+>>>>>>> refs/remotes/origin/final
 
     ///Creating histogram counting vector
     std::vector <accumulator> histogram;
@@ -113,11 +122,20 @@ void bmp_file::histogram_equalization(char* filepath) {
         histogram.push_back(*temp);
     }
 
+<<<<<<< HEAD
     /// Populate the histogram with data from the bitmap, increment the appropriate counter for each pixel
     for( unsigned int i = getStartOfBitmap(); i < fileData.size(); i++) {
         for (unsigned int j = 0; j < histogram.size(); j++)                 /// loop through file
+=======
+    /**< Populate the histogram with data from the bitmap,
+    increment the appropriate pixel counter */
+    for( unsigned int i = getStartOfBitmap(); i < fileData.size(); i++)
+    {
+        for (unsigned int j = 0; j < histogram.size(); j++)     /// loop through file
+>>>>>>> refs/remotes/origin/final
         {
-            if ( (unsigned int)histogram[j].color == (unsigned int)fileData[i] )                        /// if we have this color increment the count
+            /// if we have this color increment the count
+            if ( (unsigned int)histogram[j].color == (unsigned int)fileData[i] )
             {
                 histogram[j].counter++;
                 /// found, move on to next pixel
@@ -138,15 +156,18 @@ void bmp_file::histogram_equalization(char* filepath) {
 
     for(unsigned int i = 0; i < histogram.size(); i++) {
         /// calculate cumulative percent
-        histogram[i].cPercent = (double)histogram[i].cCounter / (double)histogram[histogram.size()-1].cCounter;
+        histogram[i].cPercent = (double)histogram[i].cCounter /
+                                (double)histogram[histogram.size()-1].cCounter;
     }
 
     /// Histogram equalization
     for(unsigned int i = 0; i<histogram.size(); i++) {
         /// New color = floor cumulative percent * number of available colors
-        histogram[i].newColor = (uint8_t)floor(histogram[i].cPercent * 255) ; ///new color = percentile of cumulative * number of colors
+        ///new color = percentile of cumulative * number of colors
+        histogram[i].newColor = (uint8_t)floor(histogram[i].cPercent * 255) ;
     }
 
+<<<<<<< HEAD
     /// Write to data files
     /**
     for(unsigned int i = 0; i< histogram.size(); i++) {
@@ -158,6 +179,8 @@ void bmp_file::histogram_equalization(char* filepath) {
     beforeFile.close();
     afterFile.close(); */
 
+=======
+>>>>>>> refs/remotes/origin/final
     /// write the Histogram Equalized data to this BMP_files data.
     for(unsigned int i = getStartOfBitmap(); i < fileData.size(); i++) {
         for (unsigned int j = 0; j < histogram.size(); j++)
@@ -173,4 +196,8 @@ void bmp_file::histogram_equalization(char* filepath) {
 
     /// Output results to new file
     writeToNewFile(filepath);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/final

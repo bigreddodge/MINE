@@ -67,6 +67,83 @@
 ////        else {
 ////            showSyntaxMessage(argv[0]); }
 //}
+
+
+
+
+
+
+
+
+
+
+/**< Graveyard */
+/**< Test function to write A-Z to testfile.bbb */
+/**<
+void writeTest();
+void writeTest(){
+    std::ofstream outFile;
+    outFile.open("testfile.bbb", std::ofstream::out | std::ofstream::binary);
+    vector<unsigned char> test;
+    for (int i = 65; i < (65+26); ++i)
+        test.push_back((char)i);
+    char * buffer = new char [1];
+    for (unsigned int i = 0; i < test.size(); i++){
+        *buffer = test[i];
+        outFile.write(buffer,1);
+    }
+}
+ */
+
+
+
+ /**< Displays the bits in a specified byte */
+ /**<
+void printBits(unsigned char byte);
+void printBits(unsigned char byte){
+    for (int i = 7; i >= 0; i--)
+        std::cout << ((byte >> i) & 0x1);
+    std::cout << ' ';
+}
+*/
+
+ /**< from ShowHeaderData
+
+        int a = myFile.getStartOfBitmap();
+        std::cout << "\n";
+        for (int i = a; i < (a + 16); ++i)
+            printBits(myFile.getPixel(i));
+ */
+
+
+
+
+    /// Write to data files
+    /**
+    for(unsigned int i = 0; i< histogram.size(); i++)
+    {
+        beforeFile << (unsigned int)histogram[i].color << ","
+                << histogram[i].counter << std::endl;
+        afterFile << (unsigned int)histogram[i].newColor << ","
+                << histogram[i].counter << std::endl;
+    }
+
+    beforeFile.close();
+    afterFile.close(); */
+
+
+
+
+
+    /// Preping files for csv output of data before and after algorithim runs
+    /**
+    std::ofstream beforeFile;
+    beforeFile.open("before.csv");
+    std::ofstream afterFile;
+    afterFile.open("after.csv");
+    */
+
+
 //    else if (argc == 5) {                               /**< Overlay syntax: milestone1 input.bmp output.bmp -o overlay.bmp */
 ////        if (argv[3] == "-o") {
 //            imageOverlay(argv[1], argv[2], argv[4]);}
