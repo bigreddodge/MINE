@@ -133,7 +133,9 @@ void bmp_file::histogram_equalization(char* filepath)
 
     for(unsigned int i = 0; i < histogram.size(); i++) {
         /// calculate cumulative percent
-        histogram[i].cPercent = (double)histogram[i].cCounter / (double)histogram[histogram.size()-1].cCounter;
+        /**histogram[i].cPercent = (double)histogram[i].cCounter / (double)histogram[histogram.size()-1].cCounter; */
+        /// Calculate Cumulative percent based on half way point of a color
+        histogram[i].cPercent = ((double)histogram[i].cCounter - 0.5 * (double)histogram[i].counter) / (double)histogram[histogram.size()-1].cCounter;
     }
 
     /// Histogram equalization
